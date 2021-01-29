@@ -7,17 +7,17 @@ const randomIntegerFromInterval = (min, max) => {
 };
 
 const makeTransaction = (transaction) => {
-  const delay = randomIntegerFromInterval(200, 500);
   return new Promise((resolve, reject) => {
+    const time = randomIntegerFromInterval(200, 500);
     setTimeout(() => {
       const canProcess = Math.random() > 0.3;
 
       if (canProcess) {
-        resolve(transaction.id, delay);
+        resolve(transaction.id, time);
       } else {
         reject(transaction.id);
       }
-    }, delay);
+    }, time);
   });
 };
 //makeTransaction({ transaction }).then(logSuccess).catch(logError);
