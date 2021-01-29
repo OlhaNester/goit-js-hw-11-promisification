@@ -3,16 +3,20 @@
 // через ms миллисекунд.Значением исполнившегося промиса должно быть то кол - во миллисекунд
 // которое передали во время вызова функции delay.
 
-const delay = (ms) => {
-  // Твой код
-};
+// const delay = (ms) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(ms);
+//     }, ms);
+//   });
+// };
 
-const logger = (time) => console.log(`Resolved after ${time}ms`);
+// const logger = (time) => console.log(`Resolved after ${time}ms`);
 
-// Вызовы функции для проверки
-delay(2000).then(logger); // Resolved after 2000ms
-delay(1000).then(logger); // Resolved after 1000ms
-delay(1500).then(logger); // Resolved after 1500ms
+// // Вызовы функции для проверки
+// delay(2000).then(logger); // Resolved after 2000ms
+// delay(1000).then(logger); // Resolved after 1000ms
+// delay(1500).then(logger); // Resolved after 1500ms
 
 // Задание 2
 // Перепиши функцию toggleUserState() так, чтобы она не использовала callback -
@@ -27,28 +31,24 @@ const users = [
 
 const toggleUserState = (allUsers, userName) => {
   return new Promise((resolve, reject) => {
-    const updatedUsers = allUsers.map((user) => {
-      if (user.name === userName) {
-        const user = { ...user, active: !user.active };
-        resolve(user);
-      }
-      reject(user);
-  );
-
-  };
+    if (user.name === userName) {
+      const updatedUsers = users.map((user) => {
+        user, (user.active = !user.active);
+      });
+    } else reject(user);
+  });
 };
 
-toggleUserState (allUsers, userName).then
 const logger = (updatedUsers) => console.table(updatedUsers);
 
-/*
- * Сейчас работает так
- */
-toggleUserState(users, "Mango", logger);
-toggleUserState(users, "Lux", logger);
+// /*
+//  * Сейчас работает так
+//  */
+// toggleUserState(users, "Mango", logger);
+// toggleUserState(users, "Lux", logger);
 
-/*
- * Должно работать так
- */
+// /*
+//  * Должно работать так
+//  */
 toggleUserState(users, "Mango").then(logger);
 toggleUserState(users, "Lux").then(logger);
