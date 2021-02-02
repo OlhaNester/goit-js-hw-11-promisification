@@ -31,13 +31,10 @@ const users = [
 
 const toggleUserState = (allUsers, userName) => {
   return new Promise((resolve, reject) => {
-    const updatedUsers = users.map((user) => {
-        if (user.name === userName)
-      { ...user, user.active = !user.active);
-      
-        resolve(updatedUsers);
-      });
-    } else reject(user);
+    const updatedUsers = allUsers.map((user) =>
+      user.name === userName ? { ...user, active: !user.active } : user
+    );
+    resolve(updatedUsers);
   });
 };
 

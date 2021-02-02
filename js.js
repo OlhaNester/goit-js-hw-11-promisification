@@ -8,22 +8,24 @@ const randomIntegerFromInterval = (min, max) => {
 
 const makeTransaction = (transaction) => {
   return new Promise((resolve, reject) => {
-    const time = randomIntegerFromInterval(200, 500);
+    const delay = randomIntegerFromInterval(200, 500);
     setTimeout(() => {
       const canProcess = Math.random() > 0.3;
 
       if (canProcess) {
-        resolve([transaction.id, delay]);
+        resolve({ id: transaction.id, time: delay });
       } else {
         reject(transaction.id);
       }
-    }, time);
+    }, delay);
   });
 };
 //makeTransaction({ transaction }).then(logSuccess).catch(logError);
 
-const logSuccess = ([id, time]) => {
-  console.log(`Transaction ${id} processed in ${time}ms`);
+const logSuccess = (resultResolve) => {
+  console.log(
+    `Transaction ${resultResolve.id} processed in ${resultResolve.time}ms`
+  );
 };
 
 const logError = (id) => {
@@ -40,9 +42,17 @@ const logError = (id) => {
 /*
  * Должно работать так
  */
-makeTransaction({ id: 70, amount: 150 }).then(logSuccess).catch(logError);
 
-makeTransaction({ id: 71, amount: 230 }).then(logSuccess).catch(logError);
+let objTest = { id: 70, amount: 150 };
+makeTransaction(objTest).then(logSuccess).catch(logError);
+
+const Foo = function () {
+  return { id: 71, amount: 230 };
+};
+
+let objTest1 = Foo();
+
+makeTransaction(objTest1).then(logSuccess).catch(logError);
 
 makeTransaction({ id: 72, amount: 75 }).then(logSuccess).catch(logError);
 
