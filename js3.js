@@ -20,7 +20,6 @@ const makeTransaction = (transaction) => {
     }, delay);
   });
 };
-//makeTransaction({ transaction }).then(logSuccess).catch(logError);
 
 const logSuccess = (resultResolve) => {
   console.log(
@@ -32,27 +31,9 @@ const logError = (id) => {
   console.warn(`Error processing transaction ${id}. Please try again later.`);
 };
 
-/*
- * Работает так
- */
-// makeTransaction({ id: 70, amount: 150 }, logSuccess, logError);
-// makeTransaction({ id: 71, amount: 230 }, logSuccess, logError);
-// makeTransaction({ id: 72, amount: 75 }, logSuccess, logError);
-// makeTransaction({ id: 73, amount: 100 }, logSuccess, logError);
-/*
- * Должно работать так
- */
+makeTransaction({ id: 70, amount: 150 }).then(logSuccess).catch(logError);
 
-let objTest = { id: 70, amount: 150 };
-makeTransaction(objTest).then(logSuccess).catch(logError);
-
-const Foo = function () {
-  return { id: 71, amount: 230 };
-};
-
-let objTest1 = Foo();
-
-makeTransaction(objTest1).then(logSuccess).catch(logError);
+makeTransaction({ id: 71, amount: 230 }).then(logSuccess).catch(logError);
 
 makeTransaction({ id: 72, amount: 75 }).then(logSuccess).catch(logError);
 
